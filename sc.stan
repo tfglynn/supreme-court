@@ -31,8 +31,8 @@ parameters {
 model {
   int current_theta_index[JUSTICE_COUNT];
   int justice_pos; // index into "justice" array
-  int case_pos; // index into alpha, etc.
-  int vote_pos; // index into "vote" array
+  int case_pos;    // index into alpha, etc.
+  int vote_pos;    // index into "vote" array
 
   for (j in 1:JUSTICE_COUNT) {
     int pos;
@@ -103,7 +103,7 @@ model {
         int pos;
         pos = current_theta_index[j];
         if (pos < theta_pos[j] + theta_num[j] - 1) {
-          theta[pos + 1] ~ normal(theta[pos], 0.1); // TODO: do we want the random walk?  what scale?
+          theta[pos + 1] ~ normal(theta[pos], 0.25); // TODO: do we want the random walk?  what scale?
           current_theta_index[j] = current_theta_index[j] + 1;
         }
       }
